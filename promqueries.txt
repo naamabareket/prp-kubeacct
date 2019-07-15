@@ -47,3 +47,15 @@ Basics:
 * Increase: how much something increased from the beginning of the range vector to the end
 * Offset: how much time in the past to go
 * [1h:1s] is a 1 hour range vector, that goes by intervals of 1 second
+
+
+
+
+CPU Usage by workflow:
+* sum(sum_over_time(namespace_pod_container:container_cpu_usage_seconds_total:sum_rate[1h:1s]) * on (namespace, pod) group_left(workload, workload_type) mixin_pod_workload) by (workload)
+CPU requests by workflow:
+* sum(sum_over_time(kube_pod_container_resource_requests_cpu_cores[1h:1s]) * on (namespace, pod) group_left(workload, workload_type) mixin_pod_workload) by (workload)
+Memory usage by workflow:
+* sum(sum_over_time(container_memory_usage_bytes[1h:1m]) * on (namespace, pod) group_left(workload, workload_type) mixin_pod_workload) by (workload)
+Memory request by workflow:
+* sum(sum_over_time(kube_pod_container_resource_requests_memory_bytes[1h:1m]) * on (namespace, pod) group_left(workload, workload_type) mixin_pod_workload) by (workload)
