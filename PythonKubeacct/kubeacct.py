@@ -32,10 +32,10 @@ parser.add_argument('--all', action='store_true')
 parser.add_argument('-s', '--sortby')
 parser.add_argument('-o', '--offset')
 act = parser.add_mutually_exclusive_group()
-act.add_argument('-r', '--reverse', action='store_true')
+parser.add_argument('-r', '--reverse', action='store_true')
 act.add_argument('--requested', action='store_true')
 act.add_argument('--transmit', action='store_true')
-act.add_argument('-u', '--unit')
+parser.add_argument('-u', '--unit')
 args = parser.parse_args()
 
 if __name__ == '__main__':

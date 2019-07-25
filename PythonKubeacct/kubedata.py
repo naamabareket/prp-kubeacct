@@ -119,7 +119,7 @@ class Promdata:
                 query = query + ' offset ' + offset
             query += ')) by (namespace)'
             return requests.get(self.url + query).json()
-        query = 'sum(delta(container_cpu_usage_seconds_total{pod=\"tstat-jrj22\", container!~\"\"}[' + period + ':1m]'
+        query = 'sum(delta(container_cpu_usage_seconds_total{container!~\"\"}[' + period + ':1m]'
         if offset:
             query = query + ' offset ' + offset
         query += ')) by (namespace)'
