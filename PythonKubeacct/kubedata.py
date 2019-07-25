@@ -114,15 +114,15 @@ class Promdata:
         """
 
         if requested:
-            query = 'sum(sum_over_time(kube_pod_container_resource_requests_cpu_cores[' + period + ':1s]'
+            query = 'sum(sum_over_time(kube_pod_container_resource_requests_cpu_cores{container!~\"\"}[' + period + ':1s]'
             if offset:
                 query = query + ' offset ' + offset
             query += ')) by (namespace)'
             return requests.get(self.url + query).json()
-        query = 'sum(increase(container_cpu_usage_seconds_total[' + period + ':1m]'
+        query = 'sum(delta(container_cpu_usage_seconds_total{pod=\"tstat-jrj22\", container!~\"\"}[' + period + ':1m]'
         if offset:
             query = query + ' offset ' + offset
-        query += ')/2) by (namespace)'
+        query += ')) by (namespace)'
         return requests.get(self.url + query).json()
 
     def memory(self, period, offset=""):
@@ -158,13 +158,13 @@ class Promdata:
         """
 
         if kind == "transmit":
-            query = 'sum(increase(container_network_transmit_bytes_total[' + period + ':1m]'
+            query = 'sum(delta(container_network_transmit_bytes_total{container!~""}[' + period + ':5m]'
             if offset:
                 query = query + ' offset ' + offset
             query += ')) by (namespace)'
 
         else:
-            query = 'sum(increase(container_network_receive_bytes_total[' + period + ':1m]'
+            query = 'sum(delta(container_network_receive_bytes_total{container!~""}[' + period + ':1m]'
             if offset:
                 query = query + ' offset ' + offset
             query += ')) by (namespace)'

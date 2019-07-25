@@ -9,11 +9,13 @@ import kubedisplay
 '-g', '--gpu' : gets gpu data
 '-c', '--cpu' : gets cpu data
 '-m', '--memory' : gets memory usage data
+'-n', '--network' : gets network data
 '--all' : ensures all data is displayed, including zero values
 '-s', '--sortby' : indicates if to sort alphabetically ("0"), or numerically ("1")
 '-o', '--offset' : how much time in the past data is collected from
 '-r', '--reverse' : sorting is reversed if passed through the command line
 '--requested' : gets the total cpu or gpus requested as opposed to used if passed in through the command line along with '-c' or '-g'
+'--transmit' : gets the total transmitted network as opposed to the default received network if passed through the commandline along with '-n'
 '-u', '--unit' : unit by which to convert the data, if not passed in data is automatically converted to the best fit unit
 
 """

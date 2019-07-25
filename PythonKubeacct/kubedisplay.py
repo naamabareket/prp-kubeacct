@@ -81,7 +81,8 @@ def walltime(dict_, sort_, unit_="", reverse=False, all=False):
 
     final_val = []
     for v in val:
-        v = round(v/div, 1)
+        #v = round(v/div, 1)
+        v = v/div
         final_val.append(v)
 
     for i in range(len(namespace)):
